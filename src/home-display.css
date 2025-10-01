@@ -1,0 +1,68 @@
+:root{
+    --title-font: "Sunshiney";
+    --body-font: "BreeSerif";
+    --title-color: #1A2A80;
+    --body-color: #FFFFFF;
+    --bkg-color: #7A85C1;
+    --high-priority: #FF0C10;
+    --medium-priority: #FF7018;
+    --low-priority: #4CEB03;
+}
+
+.main-display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.date-and-add{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+}
+
+.dateContainer{
+    grid-column: 3/6;
+    text-align: center;
+    display: flex;
+}
+
+.dateContainer p{
+    font-size: 2rem;
+    font-family: var(--body-font);
+    color: var(--title-color)
+}
+
+.dateContainer button{
+    background-color: white;
+    border-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dateContainer button img{
+    height: 43px;
+    width: 48px;
+}
+
+.add{
+    grid-column: 6/7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: white;
+}
+
+.add img{
+    height: 93px;
+    width: 76px;
+}
+
+.add img:hover{
+    transform: rotateZ(300deg);
+}
