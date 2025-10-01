@@ -1,9 +1,9 @@
 import "./main.css"
 import "./home-display.css"
-import "./add-task.css"
 import menuIconImg from "./assests/icons/menu_24dp_1A2A80_FILL0_wght400_GRAD0_opsz24.svg"
 import menuCloseImg from "./assests/icons/close_24dp_1A2A80_FILL0_wght400_GRAD0_opsz24.svg"
 import {formattingDate} from "./home-display.js"
+import { groupOrder } from "./to-do-class.js"
 
 function mobileNav(){
     const viewPort = window.matchMedia("(max-width: 1100px)")
@@ -68,5 +68,19 @@ function mainBody(){
 }
 
 mainBody()
+
+let held = groupOrder("mine")
+function groups(){
+    const selectElement = document.querySelector(".group-selector")
+    for(let i = 0; i < held.length; i++){
+        const option = document.createElement("option")
+        option.textContent = held[i]
+        selectElement.appendChild(option)
+    }
+}
+
+groups()
+
+
 
 

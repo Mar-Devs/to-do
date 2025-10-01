@@ -10,15 +10,26 @@
 }
 
 body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(5,1fr);
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-size: 16px;
     min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.bodyContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    grid-column: 1/6;
+    grid-row: 1/6;
+
 }
 
 
@@ -97,6 +108,9 @@ footer p{
 }
 
 @media (max-width: 1100px) and (min-width: 601px){
+    header{
+        position: sticky;
+    }
     nav li:first-child{
         font-size: 2.5rem;
     }
@@ -159,6 +173,9 @@ footer p{
 }
 
 @media (max-width: 600px){
+    header{
+        position: sticky;
+    }
      nav li:first-child{
         font-size: 1.5rem;
     }

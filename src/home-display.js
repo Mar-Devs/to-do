@@ -30,16 +30,36 @@ function formattingDate(){
     let textDay = daysArray[dayNumber]
 
     if(day === "01" || day === "21" || day === "31"){
-        formatted = `${textDay}, ${day}st of ${textMonth}`
+        if(day[0] === "0"){
+            formatted = `${textDay}, ${day[1]}st of ${textMonth}`
+        }
+        else{
+            formatted = `${textDay}, ${day}st of ${textMonth}`
+        }
     }
     else if(day === "02" || day === "22"){
-        formatted = `${textDay}, ${day}nd of ${textMonth}`
+        if(day[0] === "0"){
+        formatted = `${textDay}, ${day[1]}nd of ${textMonth}`
+        }
+        else{
+            formatted = `${textDay}, ${day}nd of ${textMonth}`
+        }
     }
     else if(day === "03" || day === "23"){
-        formatted = `${textDay}, ${day}rd of ${textMonth}`
+        if(day[0] === "0"){
+        formatted = `${textDay}, ${day[1]}rd of ${textMonth}`
+        }
+        else{
+            formatted = `${textDay}, ${day}rd of ${textMonth}`
+        }
     }
     else{
-        formatted = `${textDay}, ${day}th of ${textMonth}`
+       if(day[0] === "0"){
+        formatted = `${textDay}, ${day[1]}th of ${textMonth}`
+        }
+        else{
+            formatted = `${textDay}, ${day}th of ${textMonth}`
+        }
     }
 
     return formatted

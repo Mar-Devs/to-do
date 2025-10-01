@@ -11,7 +11,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack serve",
-    "gitHub": "git add dist -f && git commit -m 'Deplpyment' && git subtree push --prefix dist origin second"
+    "gitHub": "git subtree push --prefix dist origin second"
   },
   "name": "to-do",
   "version": "1.0.0",

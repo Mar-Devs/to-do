@@ -1,5 +1,3 @@
-const { create } = require("lodash")
-
 class Task{
     constructor(title,discription,dueDate,priority,group,key){
         this.title = title
@@ -10,6 +8,34 @@ class Task{
         this.key = key
     }
 }
+
+function groupOrder(input){
+    let groupArray = []
+    let holder = []
+    let check = localStorage.getItem("GroupArray")
+    if(check === null){
+    groupArray.push("Main")
+    localStorage.setItem("GroupArray",groupArray)
+    groupArray = []
+    localStorage.setItem("MainExists",true)
+    }
+    else{
+        let mainHolder = localStorage.getItem("GroupArray")
+        mainHolder = mainHolder.split(",")
+        for(let i = 0; i < mainHolder.length; i++){
+            holder.push(mainHolder[i])
+        }
+        // holder.push(mainHolder)
+        holder.push(input)
+        localStorage.setItem("GroupArray",holder)
+    }
+
+    return holder
+}
+
+
+
+
 
 
 function createTask(title,discription,dueDate,priority,group){
@@ -35,5 +61,7 @@ function deleteItem(key){
     localStorage.removeItem(key)
 }
 
+
+export {groupOrder}
 
 
