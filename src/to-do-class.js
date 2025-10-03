@@ -19,13 +19,13 @@ function groupOrder(input){
     groupArray = []
     localStorage.setItem("MainExists",true)
     }
-    else{
+    else if(input === null){}
+    else if(input !== null){
         let mainHolder = localStorage.getItem("GroupArray")
         mainHolder = mainHolder.split(",")
         for(let i = 0; i < mainHolder.length; i++){
             holder.push(mainHolder[i])
         }
-        // holder.push(mainHolder)
         holder.push(input)
         localStorage.setItem("GroupArray",holder)
     }
@@ -42,6 +42,13 @@ function createTask(title,discription,dueDate,priority,group){
     let key = crypto.randomUUID()
     let task = new Task(title,discription,dueDate,priority,group,key)
     localStorage.setItem(key,JSON.stringify(task))
+
+    return key
+}
+
+function updateTask(title,discription,dueDate,priority,group,key){
+    let task = new Task(title,discription,dueDate,priority,group)
+    localStorage.setItem(key,JSON.stringify(task))
 }
 
 
@@ -57,11 +64,8 @@ function getItem(groupName){
 }
 }
 
-function deleteItem(key){
-    localStorage.removeItem(key)
-}
 
 
-export {groupOrder}
+export {groupOrder,createTask,updateTask}
 
 

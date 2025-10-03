@@ -15,11 +15,13 @@ function dayNumbered(){
     return dayNum
 }
 
-let date = dateGetter()
+
 let dayNumber = dayNumbered()
 
 
-function formattingDate(){
+
+
+function formattingDate(date){
     let formatted
     let day = date[2]
     day = day.toString()
@@ -65,4 +67,4 @@ function formattingDate(){
     return formatted
 }
 
-export{formattingDate}
+export{formattingDate,dateGetter}

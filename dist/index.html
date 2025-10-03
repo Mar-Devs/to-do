@@ -9,51 +9,20 @@
     <div class="bodyContainer">
     <header>
         <nav class="topNav">
-            <li>TO-DO</li>
-            <li class="hideOnMobile">GROUPS</li>
-            <li class="hideOnMobile">ALL TASKS</li>
-            <li class="hideOnMobile">COMPLETED</li>
+            <li class="to-do-li">TO-DO</li>
+            <li class="dateContainer-li"><div class="dateContainer"><p class="date"></p><img class="date-container-img" src="90f7f1fb72d795a9fb4d.svg" alt="calender"></div></li>
         </nav>
     </header>
     <div class="main-display">
-        <div class="date-and-add">
-            <div class="dateContainer"><p class="date"></p><button><img class="date-container-img" src="5acd0a1bbf859f95f581.svg" alt="calender"></button></div>
-            <button class="add"><img src="7945501d9e13109c1948.svg" alt="add task button"></button>
-        </div>
-        <div class="groups"><label for="group">Main
-            <select name="group" id="group">
-                <option value=""><img src="./assests/icons/arrow_downward_24dp_1A2A80_FILL0_wght400_GRAD0_opsz24.svg" alt="downards arrow"></option>
-                <option value="main">Main</option>
+            <button class="add"><img src="209c3882ce45acba8000.svg" alt="add task button"></button>
+        <div class="groups"><p class="group-label">Main</p><label for="group">
+            <select class="group-selector" name="group" id="group">
+                <option value=""><img src="./assests/icons/arrow_downward_24dp_C2A68C_FILL0_wght400_GRAD0_opsz24.svg" alt="downards arrow"></option>
             </select>
         </label></div>
         <div class="tasks"></div>
     </div>
-    <!-- <form class="container">
-        <label for="title">Title:
-            <input type="text" name="title" id="title">
-        </label>
-        <label for="description">Description:
-            <input type="text" name="description" id="description">
-        </label>
-        <label for="priority">Priority:
-            <select name="priority" id="priority">
-                <option value="">--Select Priority--</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-            </select>
-        </label>
-        <label for="group">Group:
-            <select name="group" id="group">
-            <option value="">--Select Group--</option>
-            <option value="main">Main</option>
-            </select>
-        </label>
-        <button class="add-group-button">Add Group</button>
-        <button class="create-button" type="submit">Create</button>
-    </form> -->
     <footer>
-                <li>TO-DO</li>
                 <p>© 2025 To-Do, all rights reserved</p>
 
     </footer>

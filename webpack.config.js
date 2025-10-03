@@ -1,8 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { template } = require('lodash')
-const { run } = require('envinfo')
-const { load } = require('mime')
 
 module.exports = {
     entry: "./src/main.js",
@@ -15,7 +12,8 @@ module.exports = {
     plugins: [new HtmlWebpackPlugin({
         template: "./src/main.html",
     }
-    )],
+    )
+],
     module:{
         rules:[
             {
@@ -29,7 +27,7 @@ module.exports = {
             {
                 test: /\.html$/i,
                 loader: "html-loader"
-            }
+            },
         ],
     },
 }

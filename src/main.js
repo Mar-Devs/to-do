@@ -1,86 +1,103 @@
 import "./main.css"
 import "./home-display.css"
-import menuIconImg from "./assests/icons/menu_24dp_1A2A80_FILL0_wght400_GRAD0_opsz24.svg"
-import menuCloseImg from "./assests/icons/close_24dp_1A2A80_FILL0_wght400_GRAD0_opsz24.svg"
-import {formattingDate} from "./home-display.js"
+import "./add-task.css"
+import "./task-display.css"
+import {formattingDate,dateGetter} from "./home-display.js"
 import { groupOrder } from "./to-do-class.js"
-
-function mobileNav(){
-    const viewPort = window.matchMedia("(max-width: 1100px)")
-    const nav = document.querySelector(".topNav")
-    if(viewPort.matches){
-    const lis = document.querySelectorAll(".hideOnMobile")
-    lis.forEach(lis => {
-        lis.remove()
-    })
-    const menuIcon = document.createElement("img")
-    menuIcon.src = menuIconImg
-    menuIcon.setAttribute('alt','open menu button')
-    nav.appendChild(menuIcon)
-
-    menuIcon.addEventListener("click",()=>{
-        mobileSideBar()
-    })
-    }
-}
-
-function mobileSideBar(){
-    const sideBar = document.createElement("div")
-    sideBar.className = 'side-bar'
-    document.body.appendChild(sideBar)
-
-    const closeImg = document.createElement("img")
-    closeImg.src = menuCloseImg
-    closeImg.setAttribute('alt', 'close button')
-    sideBar.appendChild(closeImg)
-
-    const nav = document.createElement("nav")
-    nav.className = 'mobile-nav-bar'
-    sideBar.appendChild(nav)
-
-    const ul = document.createElement("ul")
-    nav.appendChild(ul)
+import { createPopUp } from "./add-task.js"
+import { conforms } from "lodash"
 
 
-    const groupsBtn = document.createElement("li")
-    groupsBtn.textContent = 'GROUP'
-    ul.appendChild(groupsBtn)
-
-    const allTasksBtn = document.createElement("li")
-    allTasksBtn.textContent = 'ALL TASKS'
-    ul.appendChild(allTasksBtn)
-
-    const completedBtn = document.createElement("li")
-    completedBtn.textContent = 'COMPLETED'
-    ul.appendChild(completedBtn)
-
-    closeImg.addEventListener("click",() =>{
-        sideBar.remove()
-    })
-}
-
-mobileNav()
 
 function mainBody(){
-    let today = formattingDate()
+    let funcDate = dateGetter()
+    let today = formattingDate(funcDate)
     const date = document.querySelector(".date")
     date.textContent = today
 }
 
 mainBody()
 
-let held = groupOrder("mine")
+
+
+
 function groups(){
+    const groupP = document.querySelector(".group-label")
     const selectElement = document.querySelector(".group-selector")
+    let held = groupOrder(null)
     for(let i = 0; i < held.length; i++){
         const option = document.createElement("option")
+        option.setAttribute('value',held[i])
         option.textContent = held[i]
         selectElement.appendChild(option)
     }
+
+    selectElement.addEventListener("change",(event)=>{
+        console.log(`You chose ${event.target.value}`)
+        groupP.textContent = event.target.value
+
+    })
+
 }
 
-groups()
+
+function createTaskGroups(selectElement,pElement,boolean){
+    let held = groupOrder(null)
+    let count = 0
+    if(count === 0){
+        ++count
+    const main = document.createElement("option")
+    main.textContent = "Main"
+    main.setAttribute('value',"Main")
+    selectElement.appendChild(main)
+    }
+    for(let i =0; i < held.length; i++){
+        const option = document.createElement("option")
+        option.setAttribute('value',held[i])
+        option.textContent = held[i]
+        selectElement.appendChild(option)
+        console.log(option.value)
+    }
+    if(boolean === true){
+         selectElement.addEventListener("change",(event)=>{
+        console.log(`You chose ${event.target.value}`)
+        pElement.textContent = event.target.value
+    })
+}
+}
+
+   function mainGroupSelector(){
+    let count = 0
+    const groupP = document.querySelector(".group-label")
+    const selectElement = document.querySelector(".group-selector")
+    selectElement.addEventListener("click",()=>{
+        ++count
+        createTaskGroups(selectElement,groupP,true)
+    })
+}
 
 
+mainGroupSelector()
+
+const addBtn = document.querySelector(".add")
+addBtn.addEventListener("click",()=>{
+    createPopUp()
+})
+
+function deleted(){
+    const deletes = document.createElement("button")
+    deletes.style.backgroundColor = 'white'
+    deletes.style.position = 'fixed'
+    deletes.style.zIndex = '2'
+    document.body.appendChild(deletes)
+    deletes.textContent = "Clear Memory"
+    deletes.addEventListener("click",()=>{
+        localStorage.clear()
+        alert("Cleared!")
+    })
+}
+
+deleted()
 
 
+export{createTaskGroups}

@@ -1,9 +1,9 @@
 :root{
     --title-font: "Sunshiney";
     --body-font: "BreeSerif";
-    --title-color: #1A2A80;
+    --title-color: #C2A68C;
     --body-color: #FFFFFF;
-    --bkg-color: #7A85C1;
+    --bkg-color: #E6D8C3;
     --high-priority: #FF0C10;
     --medium-priority: #FF7018;
     --low-priority: #4CEB03;
@@ -19,14 +19,16 @@ body{
     font-size: 16px;
     min-height: 100vh;
     overflow-x: hidden;
+    background-image: url("./assests/divya-m-1LVIgG629Do-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .bodyContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-
+    justify-content: center;
     grid-column: 1/6;
     grid-row: 1/6;
 
@@ -34,39 +36,31 @@ body{
 
 
 header{
-    background-color: var(--bkg-color);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(2px);
+    border-bottom: dashed;
+    border-color: var(--bkg-color);
     width: 100%;
 }
 
 nav{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    padding: 20px;
+}
+
+.to-do-li{
+    list-style: none;
+    font-size: 2.5rem;
+    color: var(--title-color);
+    grid-column: 1/2;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding: 20px;
-}
-
-nav li:first-child{
-    margin-right: auto;
+    padding: 10px;
     font-family: var(--title-font);
-    font-size: 3rem;
-    color: var(--title-color)
 }
 
-li{
-    list-style: none;
-    color: var(--body-color);
-    font-family: var(--body-font);
-    font-size: 2rem;
-    padding: 20px;
-}
 
-li:hover{
-    opacity: 0.5;
-}
-
-li:active{
-    transform: translateY(2px);
-}
 
 @font-face {
     font-family: "Sunshiney";
@@ -79,16 +73,14 @@ li:active{
 }
 
 footer{
-    background-color: var(--bkg-color);
+    background-color: rgba(255, 255, 255, 0.1);
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 120px;
-    position: relative;
-    bottom: 0;
-    margin-bottom: -80px;
+    margin-top: auto;
 }
 
 footer ul{
@@ -111,125 +103,18 @@ footer p{
     header{
         position: sticky;
     }
-    nav li:first-child{
-        font-size: 2.5rem;
-    }
 
-    header nav img{
-        height: 74px;
-        width: 88px;
-    }
+    .to-do-li{
+    font-size: 2rem;
+}
 
-    .side-bar{
-        height: 100%;
-        width: 400px;
-        background-color: var(--bkg-color);
-        position: absolute;
-        z-index: 999;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: -2px 0px 10px #3B38A0;
-        animation: slidingIn 0.5s 1 forwards;
-    }
-
-    .side-bar img{
-        height: 74px;
-        width: 88px;
-        align-self: flex-end;
-        padding: 20px;
-        margin-left: auto;
-    }
-
-    .side-bar nav{
-        display: block;
-        text-align: center;
-    }
-
-    .side-bar li:first-child{
-        font-family: var(--body-font);
-        color: var(--body-color);
-        font-size: 2rem;
-    }
-
-    footer nav{
-        display: flex;
-    }
-
-    footer nav ul{
-        display: block;
-    }
-
-    @keyframes slidingIn {
-        0%{
-            transform: translateX(300px);
-        }
-        100%{
-            transform: translateX(0px);
-        }
-    }
 }
 
 @media (max-width: 600px){
     header{
         position: sticky;
     }
-     nav li:first-child{
-        font-size: 1.5rem;
-    }
-
-    header nav img{
-        height: 33px;
-        width: 36px;
-    }
-
-    .side-bar{
-        height: 100%;
-        width: 300px;
-        background-color: var(--bkg-color);
-        position: absolute;
-        z-index: 999;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: -2px 0px 10px #3B38A0;
-        animation: slidingIn 0.5s 1 forwards;
-    }
-
-    .side-bar img{
-        height: 33px;
-        width: 36px;
-        align-self: flex-end;
-        padding: 20px;
-        margin-left: auto;
-    }
-
-    .side-bar nav{
-        display: block;
-        text-align: center;
-    }
-
-    .side-bar li:first-child{
-        font-family: var(--body-font);
-        color: var(--body-color);
-        font-size: 1.5rem;
-    }
-
-    .side-bar li{
-        font-size: 1.5rem;
-    }
-
-
-    @keyframes slidingIn {
-        0%{
-            transform: translateX(300px);
-        }
-        100%{
-            transform: translateX(0px);
-        }
-    }
+    .to-do-li{
+    font-size: 1rem;
+}
 }

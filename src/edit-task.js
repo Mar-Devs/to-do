@@ -1,10 +1,10 @@
-import { createTask } from "./to-do-class"
-import { createTaskGroups } from "./main"
-import { groupOrder } from "./to-do-class.js"
-import { createTaskContainer } from "./task-display.js"
+import { updateTask } from "./to-do-class"
 
 
-function createPopUp(){
+function editPopUp(keys){
+    let key = keys
+    let [fetchedTitle, fetchedDescription, fetchedDueDate, fetchedGroup, fetchedPriority] = getItem(key)
+    console.log(fetchedTitle)
     const mainDisplayDiv = document.querySelector(".main-display")
     const formDiv = document.createElement("div")
     formDiv.className = 'form-container'
@@ -32,6 +32,7 @@ function createPopUp(){
     titleInput.setAttribute('name','title')
     titleInput.setAttribute('id','title')
     titleInput.required = true
+    titleInput.value = fetchedTitle
     titleLabel.appendChild(titleInput)
 
     const descriptionLabel = document.createElement("label")
@@ -43,6 +44,7 @@ function createPopUp(){
     descriptionInput.setAttribute('type','text')
     descriptionInput.setAttribute('name','description')
     descriptionInput.setAttribute('id','description')
+    descriptionInput.value = fetchedDescription
     descriptionLabel.appendChild(descriptionInput)
 
     const dueDate = document.createElement("label")
@@ -54,6 +56,7 @@ function createPopUp(){
     dueDateInput.setAttribute('type','date')
     dueDateInput.setAttribute('name','date')
     dueDateInput.setAttribute('id','date')
+    dueDateInput.value = fetchedDueDate
     dueDate.appendChild(dueDateInput)
 
 
@@ -69,7 +72,7 @@ function createPopUp(){
 
     const defaultOption = document.createElement("option")
     defaultOption.setAttribute('value','')
-    defaultOption.textContent = '--Select Priority--'
+    defaultOption.textContent = fetchedPriority
     prioritySelect.appendChild(defaultOption)
 
     const highOption = document.createElement("option")
@@ -102,31 +105,19 @@ function createPopUp(){
 
     const groupDefaultOption = document.createElement("option")
     groupDefaultOption.setAttribute('value','')
-    groupDefaultOption.textContent = '--Select Group--'
+    groupDefaultOption.textContent = fetchedGroup
     groupSelect.appendChild(groupDefaultOption)
-
-    createTaskGroups(groupSelect,null,false)
-
-    const newGroupBtn = document.createElement("button")
-    newGroupBtn.className = 'add-group-button'
-    newGroupBtn.textContent = 'New Group'
-    groupDiv.appendChild(newGroupBtn)
-    
-
-    newGroupBtn.addEventListener("click",()=>{
-        newGroup(formDiv)
-    })
 
     const createBtn = document.createElement("button")
     createBtn.className = 'create-button'
-    createBtn.textContent = 'Create'
+    createBtn.textContent = 'Save'
     form.appendChild(createBtn)
 
     createBtn.addEventListener("click",(event)=>{
         event.preventDefault()
-        let key = eventListerns(titleInput,descriptionInput,dueDateInput,prioritySelect,groupSelect,newGroupBtn,createBtn,cancelBtn)
+        updateTask(titleInput.value,descriptionInput.value,dueDateInput.value,prioritySelect.value,groupSelect.value,key)
         formDiv.remove()
-        createTaskContainer(titleInput,descriptionInput,dueDateInput,prioritySelect,key)
+        
     })
 
     const cancelBtn = document.createElement("button")
@@ -140,43 +131,22 @@ function createPopUp(){
 
 }
 
-function eventListerns(titleInput,descriptionInput,dueDateInput,prioritySelect,groupSelect,newGroupBtn,createBtn,cancelBtn){
-    let title = titleInput.value
-    let description = descriptionInput.value
-    let dueDate = dueDateInput.value
-    let priority = prioritySelect.value
-    let group = groupSelect.value
-    let key = createTask(title,description,dueDate,priority,group)
 
-    return key
 
+function getItem(key){
+    let item = localStorage.getItem(key)
+    item = JSON.parse(item)
+    let title = item.title
+    let discription = item.discription
+    let dueDate = item.dueDate
+    let group = item.group
+    let priority = item.priority
+
+    return [title,discription,dueDate,group,priority]
 }
 
 
-function newGroup(formDiv){
-    const newGroupDiv = document.createElement("div")
-    newGroupDiv.className = 'new-group-div'
-    formDiv.appendChild(newGroupDiv)
 
-    const label = document.createElement("label")
-    label.textContent = 'Group Name'
-    label.setAttribute('form','new-group')
-    newGroupDiv.appendChild(label)
 
-    const input = document.createElement("input")
-    input.setAttribute('type','text')
-    input.setAttribute('name','new-group')
-    label.appendChild(input)
 
-    const btn = document.createElement("button")
-    btn.textContent = 'CREATE'
-    newGroupDiv.appendChild(btn)
-
-    btn.addEventListener("click",()=>{
-        let newGroupName = input.value
-        groupOrder(newGroupName)
-
-    })
-}
-
-export {createPopUp}
+export{editPopUp}
