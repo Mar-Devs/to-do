@@ -1,10 +1,10 @@
 import { updateTask } from "./to-do-class"
+import { createTaskContainer } from "./task-display"
 
 
 function editPopUp(keys){
     let key = keys
     let [fetchedTitle, fetchedDescription, fetchedDueDate, fetchedGroup, fetchedPriority] = getItem(key)
-    console.log(fetchedTitle)
     const mainDisplayDiv = document.querySelector(".main-display")
     const formDiv = document.createElement("div")
     formDiv.className = 'form-container'
@@ -105,7 +105,7 @@ function editPopUp(keys){
 
     const groupDefaultOption = document.createElement("option")
     groupDefaultOption.setAttribute('value','')
-    groupDefaultOption.textContent = fetchedGroup
+    groupDefaultOption.textContent = fetchedGroup   
     groupSelect.appendChild(groupDefaultOption)
 
     const createBtn = document.createElement("button")
@@ -130,8 +130,6 @@ function editPopUp(keys){
     })
 
 }
-
-
 
 function getItem(key){
     let item = localStorage.getItem(key)

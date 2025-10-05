@@ -125,8 +125,8 @@ function createPopUp(){
     createBtn.addEventListener("click",(event)=>{
         event.preventDefault()
         let key = eventListerns(titleInput,descriptionInput,dueDateInput,prioritySelect,groupSelect,newGroupBtn,createBtn,cancelBtn)
+        createTaskContainer(titleInput,descriptionInput,dueDateInput,prioritySelect,key,false)
         formDiv.remove()
-        createTaskContainer(titleInput,descriptionInput,dueDateInput,prioritySelect,key)
     })
 
     const cancelBtn = document.createElement("button")

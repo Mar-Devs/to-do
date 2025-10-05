@@ -6,7 +6,7 @@ import {formattingDate,dateGetter} from "./home-display.js"
 import { groupOrder } from "./to-do-class.js"
 import { createPopUp } from "./add-task.js"
 import { conforms } from "lodash"
-
+import { iterate } from "./iterate-through-memory.js"
 
 
 function mainBody(){
@@ -19,7 +19,7 @@ function mainBody(){
 mainBody()
 
 
-
+iterate()
 
 function groups(){
     const groupP = document.querySelector(".group-label")

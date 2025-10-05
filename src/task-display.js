@@ -3,6 +3,7 @@ import checkIcons from "./assests/icons/check_box_outline_blank_24dp_1A2A80_FILL
 import deleteIcons from "./assests/icons/delete_24dp_C2A68C_FILL0_wght400_GRAD0_opsz24.svg"
 import {format} from "date-fns"
 import { editPopUp } from "./edit-task"
+import { or } from "ajv/dist/compile/codegen"
 
 
 function createGridContainer(){
@@ -16,12 +17,22 @@ function createGridContainer(){
 
 let gridContainer = createGridContainer()
 
-function createTaskContainer(title,description,dueDate,priority,key){
-    let titled = title.value
-    let descriptiond = description.value
-    let priorityd = priority.value
-    let dueDated = dueDate.value
-    let keyed = key
+function createTaskContainer(title,description,dueDate,priority,key,memoryReading){
+    let titled, descriptiond, priorityd,dueDated
+    let theItem = localStorage.getItem(key)
+    theItem = JSON.parse(theItem)
+    if(memoryReading === false){
+    titled = theItem.title
+    descriptiond = theItem.discription
+    priorityd = theItem.priority
+    dueDated = theItem.dueDate
+    }
+    else if(memoryReading === true){
+       titled = title
+       descriptiond = description
+       priorityd = priority
+       dueDated = dueDate     
+    }
 
 
      try{
@@ -102,7 +113,10 @@ function createTaskContainer(title,description,dueDate,priority,key){
             count = 0
         }
     })
+
+    return [h3,p,dateDisplay]
 }
+
 
 function checkText(item1,item2){
     item1.style.textDecoration = 'line-through'
@@ -114,5 +128,10 @@ function unChkecText(item1,item2){
     item1.style.textDecoration = 'none'
     item2.style.textDecoration = 'none'
 }
+
+
+// I need a function to update the display
+// so if the discription has been edited then the text content will be updated, and so on
+
 
 export {createTaskContainer}
